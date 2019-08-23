@@ -42,7 +42,6 @@ public class AnimationLineText extends View {
         mPaint.setColor(Color.RED);
         mPaint.setDither(true);
         mPaint.setStrokeWidth(6);
-        mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setTextSize(100);
         mPaint.setAntiAlias(true);
         mPath = new Path();
@@ -87,8 +86,10 @@ public class AnimationLineText extends View {
                 mPath.lineTo(mSimples.get(i)*130,getSinPoint(mSimples.get(i))*100);
             }
         }
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         canvas.drawTextOnPath("w a n g  r a i n 1",mPath,200,0,mPaint);
         if (isShow){
+            mPaint.setStyle(Paint.Style.STROKE);
             canvas.drawPath(mPath,mPaint);
         }
     }
@@ -98,7 +99,7 @@ public class AnimationLineText extends View {
     private void startAnimation(){
 
         mAnimator = ValueAnimator.ofFloat(0, (float) (2*Math.PI));
-        mAnimator.setDuration(1000);
+        mAnimator.setDuration(1500);
         mAnimator.setInterpolator(new LinearInterpolator());
         mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
